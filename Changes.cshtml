@@ -1,0 +1,55 @@
+﻿@page
+@model HelloWorld.Pages.FormsModel
+@{ ViewData["Title"] = "Changes"; }
+
+<h1>Change History</h1>
+<br />
+
+<p>
+    Figure out the dropdown default selection problem with Form1.
+    <ul>
+        <li>Try Forms, 2: Default Values and an explanation will be shown.</li>
+    </ul>
+</p>
+
+<p>
+    Figure out how to fix Forms spacing on the menu line; adding &#38;nbsp; messes it up on the hamburger menu.
+    <ul>
+        <li>
+            <a href="https://www.youtube.com/watch?v=VA4ThmZ8lH4" target="_blank">https://www.youtube.com/watch?v=VA4ThmZ8lH4</a><br />
+            This video helped with the "Forms" and caret menu item, it is now spaced nicely on the line. I have no idea what the "aria" items are - something new to learn - and I would never have guessed to use these.
+        </li>
+        <br />
+        <li>
+            The video's code for the dropdown item itself did not work for me, so I copied the "li" and "a" lines used with the other menu items and it worked ok.
+        </li>
+    </ul>
+</p>
+
+<p>
+    Just mention, the publish to Azure option in Visual Studio works smoothly. I'm having no problems with it.
+</p>
+
+<p>
+    Figure out how to create a submenu so Form1 is under a header named Form Demos.
+    <ul>
+        <li>
+            <a href="https://stackoverflow.com/questions/48842549/how-to-create-a-hover-drop-down-menu-nav-bar-asp-net" target="_blank">https://stackoverflow.com/questions/48842549/how-to-create-a-hover-drop-down-menu-nav-bar-asp-net</a><br />
+            The info on this page took it most of the way. The Form Demos text was higher than the other menu options, but it did work as a submenu header. (However, this submenu looked fine on a narrow browser screen when it shows the hamburger.)
+        </li>
+        <br />
+
+        <li>
+            I finally got it looking good, I played with tweaking it and wrapping the whole submenu structure in the same div as the outer structure. I also had to add &#38;nbsp; around the submenu name to give it more spacing. But of course, this broke its look on the hamburger menu.
+        </li>
+    </ul>
+</p>
+
+<p>
+    Learn the parts of a Razor/cshtml application
+    <ul>
+        <li>
+            <a href="https://www.youtube.com/watch?v=68towqYcQlY" target="_blank">Intro to ASP.NET Core Razor Pages - From Start to Published</a>
+        </li>
+    </ul>
+</p>

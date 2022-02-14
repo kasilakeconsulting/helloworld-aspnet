@@ -1,0 +1,112 @@
+﻿@page
+@model HelloWorld.Pages.FormsModel
+@{ ViewData["Title"] = "Form2"; }
+
+<script src="lib/jquery/dist/jquery.js"></script>
+
+<h1>Form2: Default Values</h1>
+<p>Form sets default values for items</p>
+
+<div class="divOnlyCenter80">
+
+    @{ string t1 = "", d1 = "", r1 = "", c1 = "", c2 = "";
+
+        if (Model.Request.Method == "POST")
+        {
+            t1 = @Model.Request.Form["t1"];
+            d1 = @Model.Request.Form["d1"];
+            r1 = @Model.Request.Form["r1"];
+            c1 = @Model.Request.Form["c1"];
+            c2 = @Model.Request.Form["c2"];
+        }
+    }
+
+    <hr />
+
+    <p>
+        Fill in some text and select an item from the dropdown. More info will be provided after you click Submit.
+    </p>
+
+    <form method="post">
+        <table cellpadding="5">
+            <tr>
+                <td>Sample text:</td>
+                <td><input type="text" name="t1" value="@t1" maxlength="20" size="20" /></td>
+            </tr>
+
+            <tr>
+                <td>Dropdown:</td>
+                <td>
+                    <select name="d1" id="d1dropdown">
+                        <option value="0"></option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Radio selections:</td>
+                <td>
+                    <input type="radio" name="r1" value="a" id="r1radio" /> A<br />
+                    <input type="radio" name="r1" value="b" id="r2radio" /> B
+                </td>
+            </tr>
+
+            <tr>
+                <td>Checkboxes:</td>
+                <td>
+                    <input type="checkbox" name="c1" value="hi" id="c1checkbox" /> Hi<br />
+                    <input type="checkbox" name="c2" value="bye" id="c2checkbox" /> Bye
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2"><input type="submit" name="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+
+    @{ if (Model.isPost)
+        {
+
+            <script>$(document).ready(function () {
+                $("#d1dropdown")[0].selectedIndex = @d1;
+                if ('@r1' == 'a') {
+                    $("#r1radio").prop('checked', true);
+                } else {
+                    $("#r2radio").prop('checked', true);
+                }
+                if ('@c1' != '') $('#c1checkbox').prop('checked', true);
+                if ('@c2' != '') $('#c2checkbox').prop('checked', true);
+                });
+            </script>
+
+            <hr />
+
+            <p>You typed the text: @t1</p>
+            <p>You selected the dropdown item with value: @d1</p>
+            <p>Your radio selection: @r1</p>
+            <p>Your checkbox 1 value: @c1</p>
+            <p>Your checkbox 2 value: @c2</p>
+
+            <p>The first thing I'm noticing is that the variables I'm using on this page are not defined in Form2.cshtml.cs. The ones defined in Form1.cshtml.cs must be global here because they were defined under namespace HelloWorld?</p>
+
+            <p>I wanted to try form handling here in a manner similar to what I would do in php, but with the hope that cshtml would make setting some form defaults easier (like not not having to do a foreach with an srray of options to find a match with the previously selected option).</p>
+
+            <p>Unfortunately, there does not appear to be some new, cool cshtml way to do this. The examples I've found require a lot of code added to the page's cshtml.cs file. While this is fine for a more complicated form, I don't want to bother with this for a simple hello world-type form.</p>
+
+            <p>So, my solution is to use JQuery. I don't consider this to be cheating because JQuery is automatically added by Visual Studio when you create a new web app project, so why not use the simplest tool for ths job? I do get to refer to cshtml variables in the JQuery, so at least this part is made easier.</p>
+
+        }
+    }
+
+
+</div>
+
+
+

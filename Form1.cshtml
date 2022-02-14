@@ -1,0 +1,76 @@
+@page
+@model HelloWorld.Pages.FormsModel
+@{ ViewData["Title"] = "Form1"; }
+
+<h1>Form1: First Form</h1>
+<p>Page accessed with: @Model.requestType</p>
+
+<div class="divOnlyCenter80">
+
+    @{ string t1 = "", d1 = "0";
+
+        if (Model.Request.Method == "POST")
+        {
+            t1 = @Model.Request.Form["t1"];
+            d1 = @Model.Request.Form["d1"];
+        }
+    }
+
+    <hr />
+
+    <p>
+    Fill in some text and select an item from the dropdown. More info will be provided after you click Submit.
+    </p>
+
+    <form method="post">
+        <table cellpadding="5">
+            <tr>
+                <td>Sample text:</td>
+                <td><input type="text" name="t1" value="@t1" maxlength="20" size="20" /></td>
+            </tr>
+            <tr>
+                <td>Dropdown:</td>
+                <td>
+                    <select name="d1" id="dlist">
+                        <option value="0"></option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2"><input type="submit" name="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+
+    @{ if (Model.isPost)
+        {
+        <hr />
+
+        <p>You typed the text: @t1</p>
+        <p>You selected the item with value: @d1</p>
+
+        <p>You'll notice the text is easily put back in the form box. However, there is no simple way to get the dropdown to reselect what you chose. There is code that can be added to Forms.cshtml.cs to accomplish this, but it's more complicated and I need to learn more about it.</p>
+
+
+        <p>Helpful pages:</p>
+        <ul>
+            <li>
+                Explanation of ASP.NET files; use of Model to access variable content<br />
+                <a href="https://www.youtube.com/watch?v=68towqYcQlY" target="_blank">Intro to ASP.NET Core Razor Pages - From Start to Published</a>
+            </li>
+
+        </ul>
+
+            }
+        }
+
+</div>
+
+
+
